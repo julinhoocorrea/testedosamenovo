@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agência Check</title>
+  <base href="/agoraosameacerta/">
+
+  <!-- Anti-cache meta tags for production stability -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <!-- GitHub Pages SPA redirect script - Enhanced to avoid auth conflicts -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // Enhanced version to prevent conflicts with authenticated state
+    (function(l) {
+      // Check if user is already authenticated to avoid unnecessary redirects
+      var hasAuthData = false;
+      try {
+        var authStorage = sessionStorage.getItem('auth-session');
+        if (authStorage) {
+          var authData = JSON.parse(authStorage);
+          hasAuthData = authData && authData.state && authData.state.isAuthenticated;
+        }
+      } catch (e) {
+        // sessionStorage might not be available, continue normally
+      }
+
+      // Only process redirects if:
+      // 1. There's a search parameter indicating a GitHub Pages redirect
+      // 2. User is not already authenticated (to avoid conflicts)
+      if (l.search[1] === '/' && !hasAuthData) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
