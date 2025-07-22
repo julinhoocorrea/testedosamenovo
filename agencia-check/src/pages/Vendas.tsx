@@ -440,11 +440,19 @@ ${qrCode}`);
               <Label>Valor Total (Automático)</Label>
               <div className="px-3 py-2 bg-gray-100 border rounded-md">
                 <span className="text-lg font-bold text-green-600">
-                  R$ {calculatedValue.toFixed(2)}
+                  {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                  }).format(calculatedValue)}
                 </span>
               </div>
               <p className="text-xs text-gray-500">
-                Preço unitário: R$ {calculateDiamondPrice(estoque.items).toFixed(4)}
+                Preço unitário: {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                  minimumFractionDigits: 4,
+                  maximumFractionDigits: 4
+                }).format(calculateDiamondPrice(estoque.items))}
               </p>
             </div>
           </div>
